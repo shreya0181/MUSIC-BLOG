@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <title>MUSICBLOG</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link
+      rel="stylesheet"
+      href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      .card-header {
+        background-color: transparent;
+        color: red;
+        justify-content: space-between;
+        display: flex;
+      }
+
+      .card {
+        background-color: transparent;
+        width: 250px;
+        border-color: transparent;
+      }
+
+      body {
+        /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSrgGqHaCKrqmjBtTSZnIvk0rAM-4P0Pe_fYflTPPGjgmMfR8dH&usqp=CAU");
+        */
+        font-family: "Source Code Pro", monospace;
+        background-color: white;
+        background-position-x: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin: 0;
+        outline: 0;
+        padding: 10px;
+        width: 100%;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+        box-shadow: 0 1px 0 rgba(231, 98, 120, 0.03) inset;
+        margin-bottom: 30px;
+      }
+      .img {
+        color: white;
+        height: 20px;
+        width: 20px;
+      }
+      .card-body {
+        width: 100px;
+        height: 100px;
+      }
+      .card-footer {
+        background-color: transparent;
+      }
+      a {
+        color: blanchedalmond !important;
+      }
+    </style>
+  </head>
+  <body onload="loadDoc()">
+    <!-- navbar  -->
+    <nav
+      style="background-color: black; margin-bottom: 9px; border-radius: 4px;"
+      class="navbar navbar-light"
+    >
+      <!-- <a class="navbar-brand"><i class="fad fa-compact-disc"></i></a> -->
+      <center>
+        <h1 style="color: red; font-family: 'Sacramento', cursive;">
+          <center>Geo Top Artists</center>
+        </h1>
+      </center>
+    </nav>
+
+    <!-- Header -->
+    <!-- <header class="w3-container w3-xlarge w3-padding-24">
+<center><h1>genre</h1> </center>
+</header> -->
+
+    <div
+      class="container-fluid"
+      style="
+        background-image: url('https://www.tunecore.com/wp-content/uploads/sites/12/2018/11/COM-Lucy-Peach-Homepage.jpg');
+        background-attachment: fixed;
+        border-radius: 4px;
+        background-position-x: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin: 0;
+        outline: 0;
+        padding: 10px;
+        width: 100%;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+        box-shadow: 0 1px 0 rgba(231, 98, 120, 0.03) inset;
+        margin-bottom: 30px;
+      "
+    >
+      <div class="row">
+        <div class="col">
+          <div id="card-columns" class="card-columns"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ajax -->
+    <script>
+      function loadDoc() {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);
+            var json = JSON.parse(this.responseText);
+            // alert(json.data[0].title);
+            for (var i = 0; i < json.tracks.track.length; i++) {
+              var trackNameText = json.tracks.track[i].name;
+              var ArtistNameText = json.tracks.track[i].artist.name;
+              var imageurl = json.tracks.track[i].image[0]["#text"];
+              // var image=document.createElement("img");
+              // image.setAttribute("src",imageurl);
+
+              var ArtistName = document.createTextNode(ArtistNameText);
+              var URL = json.tracks.track[i].url;
+              var link = document.createElement("a");
+              var img = document.createElement("img");
+              img.src =
+                "https://www.transparentpng.com/thumb/play-button/nHKpsQ-play-button-png.png";
+              img.className = "img";
+              link.setAttribute("href", URL);
+              var trackName = document.createTextNode(trackNameText);
+              var cardDiv = document.createElement("div");
+              cardDiv.className = "card col-6";
+              var cardHeaderDiv = document.createElement("div");
+              cardHeaderDiv.className = "card-header";
+              var cardBodyDiv = document.createElement("div");
+              cardBodyDiv.className = "card-body";
+              var cardTextP = document.createElement("p");
+              cardTextP.className = "card-text";
+
+              var icon = document.createElement("i");
+              icon.className = "far fa-comment-alt-music";
+
+              // append family
+              cardHeaderDiv.appendChild(trackName);
+              cardBodyDiv.appendChild(cardTextP);
+              cardDiv.appendChild(cardHeaderDiv);
+              cardDiv.appendChild(cardBodyDiv);
+
+              var cardColumns = document.getElementById("card-columns");
+              cardColumns.appendChild(cardDiv);
+              //   link.append('<i class="fa fa-trash-o" aria-hidden="true"></i>');
+              link.appendChild(img);
+              cardHeaderDiv.appendChild(link);
+              cardTextP.appendChild(ArtistName);
+
+              // //styling
+              // document.body.style.background = "#f3f3f3 url('img_tree.png') no-repeat right top";
+              cardBodyDiv.style.background = "url(" + imageurl + ")";
+            }
+          }
+        };
+
+        xhr.open(
+          "POST",
+          "https://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key=5a8a5e00f96a513648129fba2cce322c&format=json",
+          true
+        );
+
+        xhr.send();
+      }
+    </script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<title>MUSICBLOG</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+<!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">  
+ <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+<link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+<body onload="loadDoc()">
+        <div class="w3-content" style="max-width:1500px;  ">
+   
+    <nav  style="background-color: black; border-radius: 4px;"  class="navbar navbar-light  " >
+           
+            <h1 style="
+                color: red; ">Singers</h1>
+          </nav>
+
+
+<!-- table -->
+<center><div  style="color: black;  background-image: url('https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') ;
+    background-attachment:fixed ;
+    background-position-x: center;
+    background-repeat: no-repeat ;
+    background-size: cover;
+    font-size: 30px;
+    font-family: Sacramento, cursive;
+    margin-top:  9px;
+    outline: 0;
+    padding: 10px;
+    width: 100%;
+  box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+    box-shadow: 0 1px 0 rgba(231, 98, 120, 0.03) inset;
+    margin-bottom: 30px;
+    border-radius: 4px;">
+        <center><table id="singers">  
+    </table></center>
+</div></center>
+
+</div>
+</div>
+<style>
+    
+    body{
+        /* background-image: url('https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') ;
+        background-attachment:fixed ; */
+        background-color: white;
+        background-position-x: center;
+        background-repeat: no-repeat ;
+        background-size: cover;
+        font-size: 30px;
+        
+        margin: 0;
+        outline: 0;
+        padding: 10px;
+        width: 100%;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+        box-shadow: 0 1px 0 rgba(231, 98, 120, 0.03) inset;
+        margin-bottom: 30px;
+        border-radius: 4px;
+        font-family: "Sacramento", cursive;
+       
+    }
+    img {margin-bottom: -8px}
+    table{
+        width:900px;
+        color: white;
+        /* font-weight: 80; */
+        text-decoration: slategray;
+        /* font-style: inherit; */
+    }
+    table a {
+        color: white !important;
+    }
+    
+    .list
+    {
+        margin-top:2px ;
+        
+    }
+    .tdlist{
+        
+        width:900px;
+      
+        
+    } 
+    .tdlist:hover{
+             
+        background: rgba(255, 255, 255, 0.1);     
+        border-radius: 4px;        
+        width: 100%;
+        /* border: 2px solid #e45d64;    */
+        color: #8a97a0;
+        height: 30px;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        
+    }
+     
+    .img{
+        margin: 2px;
+        width: 20px;
+        height: 20px;
+    }
+   
+    </style>
+
+
+
+<!-- ajax -->
+    <script>
+   function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    console.log(this.responseText);
+
+    // singers list
+    
+        var singers=  document.getElementById("singers");
+    var json=JSON.parse(this.response);
+    for(var i=0;i<50;i++)
+  {
+      //two td one row 
+    var listsingers= document.createElement("tr");
+    var listItemName= document.createElement("td");
+    var listItemURLTD= document.createElement("td");
+    listsingers.className='list';
+    listItemName.className='tdlist';
+
+
+
+  //music link 
+    // var singerTextNode=document.createTextNode("go");
+     var singerURLSpanNode=document.createElement("span");
+    var singerlink= document.createElement('a');
+    var img = document.createElement("img");
+              img.src =
+                "https://www.transparentpng.com/thumb/play-button/nHKpsQ-play-button-png.png";
+              img.className = "img";
+    singerlink.appendChild(img);
+    var listItemURL=json.topartists.artist[i].url ;
+    singerlink.setAttribute("href", listItemURL);
+    singerlink.className='btn btn-secondary btn-sm';
+    singerURLSpanNode.className='glyphicon-play-circle';
+   
+   
+
+
+    //name of singer
+    var singerNametext=json.topartists.artist[i].name;
+    var singerNametextNode=document.createTextNode(singerNametext);
+    listItemName.appendChild(singerNametextNode);
+    listsingers.appendChild( listItemName);
+   
+    
+    // tabling ;D
+    listItemURLTD.appendChild(singerlink);
+    listsingers.appendChild(listItemURLTD);
+    singers.appendChild(listsingers);
+
+
+    
+} 
+    
+    // alert(listsingers);
+    }
+  };
+
+xhttp.open("GET", "https://ws.audioscrobbler.com/2.0/?method=tag.gettopartists&tag=disco&api_key=5a8a5e00f96a513648129fba2cce322c&format=json", true);
+  xhttp.send();
+   }  
+ 
+</script>
+
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> --> 
+</body>
+</html>

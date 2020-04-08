@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+  <title>MUSICBLOG</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+  <link
+    href="https://fonts.googleapis.com/css?family=Raleway"
+    rel="stylesheet"
+    type="text/css"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous"
+  />
+
+  <body onload="loadDoc()">
+    <!-- navbar  -->
+    <nav
+      style="background-color: black; border-radius: 4px;"
+      class="navbar navbar-light"
+    >
+      <!-- <a class="navbar-brand">Navbar</a> -->
+      <center>
+        <h1 style="font-family: 'Sacramento', cursive; color: red;">Albums</h1>
+      </center>
+    </nav>
+  
+    <!-- styling -->
+    <style>
+      body {
+        background-color: white;
+        background-position-x: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        font-size: 20px;
+        background-attachment: fixed;
+        margin: 0;
+        outline: 0;
+        padding: 10px;
+        width: 100%;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+        box-shadow: 0 1px 0 rgba(231, 98, 120, 0.03) inset;
+        margin-bottom: 30px;
+        border-radius: 4px;
+        font-family: "Sacramento", cursive;
+      }
+      .card {
+
+
+        /* margin: 100px;
+        margin-top: 9px ; */
+        /* margin: 0 auto ; */
+        width: 500px;
+        height: 500px;
+        margin-left: 5px;
+        background-color: transparent;
+        color: white;
+        font-size: 30px;
+        border-color: transparent;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .card-header {
+         font-size: small;
+        background-color: transparent;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .card-footer {
+        border-color: transparent;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .row {
+        display: flex;
+        justify-content: space-between;
+        padding: 9px;
+        margin: 9px;
+      }
+      .nav {
+        margin-bottom: 9px;
+      }
+      .main {
+        height: 100vh;
+        margin-top: 9px;
+        background: white
+          url(https://im-dev-proxy.imgix.net/https%3A%2F%2Fasset-1.theoutline.com%2Fv1%2Fduotone%2Fpreview%3Fend%3DFB6754%26start%3D7D3C9E%26url%3Dhttps%253A%252F%252Foutline-prod.imgix.net%252F20170111-04VTplAn0V6S0jDNxCzx%253Fs%253D01287285e366d8b79c0e474ae1d55df5?auto=format&q=60&w=1280&s=821457276e374a92c5b8b72e6cfd3f42)
+          fixed;
+        object-fit: cover;
+
+        background-color: white;
+
+        background-position-x: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        font-size: 20px;
+        background-attachment: fixed;
+    
+        outline: 0;
+
+        width: 100%;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+        box-shadow: 0 1px 0 rgba(231, 98, 120, 0.03) inset;
+        margin-bottom: 30px;
+        border-radius: 4px;
+        font-family: "Sacramento", cursive;
+      }
+      .card-body {
+         width: 500px;
+         height: 500px;
+         background-image: cover;
+         background-position-x: center;
+           background-repeat: no-repeat;
+background-size: cover;
+font-size: 20px;
+background-attachment: fixed;
+box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+        box-shadow: 0 1px 0 rgba(231, 98, 120, 0.03) inset;
+        margin-bottom: 30px;
+        border-radius: 4px;
+
+
+         /* background-color: white; */
+
+
+
+      }
+      .img{
+         width: 30px;
+         height: 30px;
+         color: white;
+         
+      }
+      .mdiv{
+         margin: 0 auto ;
+      }
+    </style>
+
+   
+     <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      /* Slideshow container */
+      .slideshow-container {
+        max-width: 1000px;
+        position: relative;
+        margin:0 auto;
+        
+         display: flex;
+      }
+
+      /* Hide the images by default */
+      .mySlides {
+        display: inline-block;
+      } 
+
+      /* Next & previous buttons */
+      .prev,
+      .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        margin-top: -22px;
+        padding: 16px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+        /* background-color: black; */
+          margin: 9px;  
+      margin-left: 0;  
+      }
+
+      /* Position the "next button" to the right */
+      .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+      }
+
+      /* On hover, add a black background color with a little bit see-through */
+      .prev:hover,
+      .next:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+
+      /* Caption text */
+      .text {
+        color: #f2f2f2;
+        font-size: 15px;
+        padding: 8px 12px;
+        position: absolute;
+        bottom: 8px;
+        width: 100%;
+        text-align: center;
+      }
+
+      /* Number text (1/3 etc) */
+      .numbertext {
+        color: #f2f2f2;
+        font-size: 12px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 0;
+      }
+
+      /* The dots/bullets/indicators */
+      .dot {
+        cursor: pointer;
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        margin-top:20px ;
+        background-color:white;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+      }
+
+      .active,
+      .dot:hover {
+        background-color: #717171;
+      }
+
+      /* Fading animation */
+       .fade { 
+        -webkit-animation-name: fade;
+        -webkit-animation-duration: 2000s;  
+          animation-name:fade; 
+         animation-duration: 2000s;   
+       }
+
+        @-webkit-keyframes fade {
+        from {
+           opacity: 0.9; 
+
+        }
+        to {
+          opacity: 1;
+        }
+      }   
+
+        @keyframes fade {
+        from {
+          opacity:0.9;
+        }
+        to {
+          opacity: 1;
+        }
+      }  
+      .slideshow-container{
+         margin: 0 auto ;
+         margin-left:60px ;
+      }
+      /* .mySlides fade{
+         display:flex;
+        justify-content: space-between;
+      }  */
+    </style> 
+    <div class="main" >
+      
+      <!-- Slideshow container --> 
+      <div class="slideshow-container"id="slideshow-container"  >
+     
+       <!-- <div class="mySlides fade"  >
+       
+         
+        </div> -->
+      </div>
+
+
+     
+               
+                
+            
+      
+    </div>
+     
+    <div style="text-align: center; margin-top: 200px;">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+      
+      
+
+     
+    </div>
+    
+   
+       
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      </div>
+    </div> 
+      <br />
+
+      <!-- The dots/circles -->
+    </div>
+
+    <!-- styling -->
+
+    <!-- ajax -->
+
+    <script>
+      var slideIndex = 1;
+      showSlides(slideIndex);
+
+      // Next/previous controls
+      function plusSlides(n) {
+        showSlides((slideIndex += n));
+      }
+
+      // Thumbnail image controls
+      function currentSlide(n) {
+        showSlides((slideIndex = n));
+      }
+
+      function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {
+          slideIndex = 1;
+        }
+        if (n < 1) {
+          slideIndex = slides.length;
+        }
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+      }
+    </script> 
+
+    
+
+    <script>
+      function loadDoc() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            // console.log(this.responseText);
+
+            var json = JSON.parse(this.responseText);
+            //  alert(json.albums.album[0].image[0]['#text']);
+            for(var i=0;i<json.albums.album.length;i++){
+            var row=document.createElement('div');
+            row.className='row';
+               var div= document.createElement('div');
+               div.className='mdiv';
+
+            for(var j=0;j<2;j++){
+               var card =document.createElement('div');
+               var Header= document.createElement('div');
+               var Body= document.createElement('div');
+               var Footer= document.createElement('div');
+               var img=document.createElement('img');
+               var link = document.createElement("a");
+               
+               
+
+
+               var HeaderTxt= document.createTextNode(json.albums.album[i].name);
+               Header.appendChild(HeaderTxt);
+                var imgurl=json.albums.album[i].image[0]['#text'];
+               Body.style.background = "url(" + imgurl + ") fixed";
+               Body.style.repeat = "no-repeat";
+               Body.style.size= "cover";
+               // Body.style.font.size="20px";
+               Body.style.attachment="fixed";
+               var col= document.createElement('div');
+               col.className='col-4'
+               
+                    
+               var URL= json.albums.album[i].url;
+               img.src =
+                "https://www.transparentpng.com/thumb/play-button/nHKpsQ-play-button-png.png";
+                img.className = "img";
+                link.setAttribute("href", URL);
+                link.appendChild(img);
+                Footer.appendChild(link);
+               row.appendChild(card);
+                 
+                 card.className='card';
+                 Header.className='card-header';
+                 Footer.className='card-footer';
+                 Body.className='card-body';
+              
+                card.appendChild(Header);
+                card.appendChild(Body);
+                card.appendChild(Footer);
+                col.appendChild(card);
+                    row.appendChild(col);
+                 i++;
+               
+            }
+               div.appendChild(row);
+                div.className='mySlides fade';
+              
+                var cardColumns = document.getElementById("slideshow-container");
+               cardColumns.appendChild(div);
+
+            
+
+
+            }
+         }
+        };
+        xhttp.open(
+          "GET",
+          "https://ws.audioscrobbler.com/2.0/?method=tag.gettopalbums&tag=disco&api_key=7278def9ab4ada6e8653d427b20fd9e7&format=json",
+          true
+        );
+        xhttp.send();
+      }
+    </script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
+<!-- &artist=Cher&album=Believe -->
+<!-- http://ws.audioscrobbler.com/2.0/?method=album.search&album=&api_key=5a8a5e00f96a513648129fba2cce322c&format=json -->
+<!-- 7278def9ab4ada6e8653d427b20fd9e7 -->
